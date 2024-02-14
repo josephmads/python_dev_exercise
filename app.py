@@ -1,4 +1,3 @@
-from config import CFG
 from flask import Flask, render_template, request
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
@@ -9,9 +8,7 @@ app = Flask(__name__,
             static_url_path='/static', 
             static_folder='static')
 
-# Import config variable. 
-# In production I would add the `config` file to `.gitignore` 
-app.config['SECRET_KEY'] = CFG['SECRET_KEY']
+app.config['SECRET_KEY'] = 'supersecretkey!'
 
 # Forms
 class SearchForm(FlaskForm):
