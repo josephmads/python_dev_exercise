@@ -3,13 +3,18 @@
 
 {% block content %}
 
-
 {% if results %}
 
     <section class="section">
         <h1 class="title mb-4">Results</h1>
         <div class="container">
+        
+        {% if name in results %}
             {{ results | safe }}
+        {% else %}
+            <p>No results found for patient with first name <strong>{{ name }}</strong></p>
+        {% endif %}
+            
         </div>
         <div class="container m-4">
             <a class="button is-primary" href="{{ url_for('search') }}">New Search</a>

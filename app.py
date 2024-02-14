@@ -15,6 +15,7 @@ class SearchForm(FlaskForm):
     query = StringField("Search for patient by first name.", validators=[DataRequired()])
     submit = SubmitField("Submit")
 
+# Routes
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -36,7 +37,9 @@ def search():
         query = request.form.get('query')
         query = query.capitalize()
         results = cleaned_data.loc[cleaned_data['PatientFirstName'] == query]
-        return render_template('search.html', results=results.to_html())
+        return render_template('search.html', 
+                               results=results.to_html(classes='table is-striped'),
+                               name=query)
 
     # GET
     return render_template('search.html', form=form)
