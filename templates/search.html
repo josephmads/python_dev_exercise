@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+{% if results %}
+
+    <section class="section">
+        <h1 class="title mb-4">Results</h1>
+        <div class="container">
+            {{ results | safe }}
+        </div>
+        <div class="container m-4">
+            <a class="button is-primary" href="{{ url_for('search') }}">New Search</a>
+        </div>
+    </section>
+
+{% else %}
+
+<section class="section">
+    <h1 class="title mb-4">Search</h1>
+    <div class="container">
+        <div class="field is-horizontal">
+            <form method="post">
+                {{ form.hidden_tag() }}
+                {{ form.query.label(class_="label") }}
+                {{ form.query(class_="input mb-4") }}
+                {{ form.submit(class_="button is-primary") }}
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endif %}
+
+{% endblock content %}
+    
